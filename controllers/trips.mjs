@@ -20,7 +20,6 @@ export default function initTripsController(db) {
       console.log(error);
     }
   };
-
   // return all methods we define in an object
   // refer to the routes file above to see this used
   return {

@@ -21,13 +21,13 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 app.use(express.json());
 // Bind route definitions to the Express application
-bindRoutes(app);
-
-// Set Express to listen on the given port
-const PORT = process.env.PORT || 3004;
-app.listen(PORT);
 
 app.use(cors({
   credentials: true,
   origin: FRONTEND_URL,
 }));
+
+bindRoutes(app);
+// Set Express to listen on the given port
+const PORT = process.env.PORT || 3004;
+app.listen(PORT);
