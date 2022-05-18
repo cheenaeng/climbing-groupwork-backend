@@ -9,6 +9,7 @@ export default function initTripsController(db) {
       .catch((error) => console.log(error));
   };
   const addTrip = (request, response) => {
+    console.log(request.body);
     db.Trip.create({
       name: request.body.tripName,
     })
