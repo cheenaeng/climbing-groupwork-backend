@@ -8,15 +8,17 @@ export default function initTripsController(db) {
       })
       .catch((error) => console.log(error));
   };
-  const addTrip = (request, response) => {
-    console.log(request.body);
-    db.Trip.create({
-      name: request.body.tripName,
-    })
-      .then((trips) => {
-        response.send({ trips });
-      })
-      .catch((error) => console.log(error));
+
+  const addTrip = async (request, response) => {
+    try {
+      const newTrip = await db.Trip.create({
+        name: request.body.tripName,
+      });
+      response.send({ newTrip });
+    }
+    catch (error) {
+      console.log(error);
+    }
   };
 
   // return all methods we define in an object
