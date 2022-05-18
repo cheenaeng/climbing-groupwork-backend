@@ -4,7 +4,16 @@ export default function initTripsController(db) {
   const index = (request, response) => {
     db.Trip.findAll()
       .then((trips) => {
-        response.send({trips});
+        response.send({ trips });
+      })
+      .catch((error) => console.log(error));
+  };
+  const addTrip = (request, response) => {
+    db.Trip.create({
+      name: request.body.tripName,
+    })
+      .then((trips) => {
+        response.send({ trips });
       })
       .catch((error) => console.log(error));
   };
@@ -12,6 +21,6 @@ export default function initTripsController(db) {
   // return all methods we define in an object
   // refer to the routes file above to see this used
   return {
-    index,
+    index, addTrip,
   };
 }
