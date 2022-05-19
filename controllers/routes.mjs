@@ -24,9 +24,26 @@ export default function initRoutesController(db) {
     }
   };
 
+  const findRoutes = async (request, response) => {
+    try {
+      const { tripId } = request.body;
+
+      const tripRoutes = await db.Trip.findOne({
+        where: {
+          id: tripId,
+        },
+        include: [db.Route],
+      });
+      response.send({ tripRoutes });
+    }
+    catch (error) {
+      console.log(error);
+    }
+  };
+
   // return all methods we define in an object
   // refer to the routes file above to see this used
   return {
-    index, addRoute,
+    index, addRoute, findRoutes,
   };
 }
